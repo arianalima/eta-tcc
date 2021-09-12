@@ -4,7 +4,7 @@ Resource          ../resource/BDD.robot
 Resource          ../resource/pages/login_resource.robot
 Suite Setup       Open Application
 Test Setup        Open Login Screen
-#Suite Teardown    Close Application
+Suite Teardown    Close Application
 
 #Bookstore Application sign in and sign up scenarios
 

@@ -8,6 +8,7 @@ ${BROWSER}    chrome
 ${URL}        https://demoqa.com/
 ${BOOKSTORE_CARD}  css=.category-cards > div:nth-child(6)
 ${CLOSE_BANNER}  css=#close-fixedban
+${HEADER_TITLE}  css=.main-header
 
 
 *** Keywords ***    
@@ -17,10 +18,10 @@ Open Application
     Title Should Be  ToolsQA
     Wait Until Element Is Visible  ${CLOSE_BANNER}
     Click Element  ${CLOSE_BANNER}
-    Execute Javascipt  window.scrollTo(0, window.scrollY+1000)
-    Scroll Element Into View  ${BOOKSTORE_CARD}
+    Press Keys  None  PAGE_DOWN 
+    Wait Until Element Is Visible  ${BOOKSTORE_CARD}
     Click Element  ${BOOKSTORE_CARD}
-    Page Should Contain  Book Store
+    Element Text Should Be  ${HEADER_TITLE}  Book Store
 
 
 Close Application
