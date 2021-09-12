@@ -2,16 +2,23 @@
 Resource          ../resource/resource.robot
 Resource          ../resource/BDD.robot
 Resource          ../resource/pages/login_resource.robot
-Test Setup        Open Application
-Test Teardown     Close Browser
+Suite Setup       Open Application
+Test Setup        Open Login Screen
+#Suite Teardown    Close Application
 
 #Bookstore Application sign in and sign up scenarios
 
+*** Variables ***
+${VALID_USER}  admin
+${VALID_PASSWORD}  Admin1!!
+
+
 *** Test Cases ***
 Scenario 01: User successfully logged in
-    Given the fields are filled: "validUser" and "validPassword"
+    Given the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
     When the "Login" button is clicked
     Then the user is redirected to "Profile" screen
+
 
 *** comment ***
 Scenario Outline 02: Login error due to invalid fields
