@@ -5,7 +5,7 @@ dist/
 *$py.class
 __pycache__/
 .DS_Store
-
+*.png
 
 #robot
 tmp
