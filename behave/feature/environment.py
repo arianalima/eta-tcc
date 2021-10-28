@@ -1,6 +1,3 @@
-import os
-import json
-import time
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
