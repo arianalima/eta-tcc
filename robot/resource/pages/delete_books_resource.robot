@@ -4,10 +4,6 @@ Library  OperatingSystem
 
 
 *** Variable ***
-${BOOK_STORE_BUTTON}  css=#gotoStore
-${LOGIN_FORM}  css=#userForm
-${USERNAME_INPUT}  css=#userName
-${PASSWORD_INPUT}  css=#password
 ${HEADER_TITLE}  css=.main-header
 ${FIRST_BOOK}  css=a[href="/books?book=9781449325862"]
 ${ADD_A_BOOK_TO_A_COLLECTION_BUTTON}  xpath=//div[@class='mt-2 fullButtonWrap row']/*[last()]//button 
@@ -18,13 +14,13 @@ ${CONFIRM_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-ok
 ${CANCEL_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-cancel
 ${BOOK_NAME_LABEL}   xpath=//label[text()='Git Pocket Guide']
 ${DELETE_TOOLTIP}   css=span[data-toggle='tooltip'][title='Delete']      
+${PROFILE_URL}   https://demoqa.com/profile
+${BOOKSTORE_URL}    https://demoqa.com/books
 
 
 *** Keywords ***
 I click to open the book store
-    Press Keys  None  PAGE_DOWN 
-    Wait Until Element Is Enabled  ${BOOK_STORE_BUTTON}
-    Click Element  ${BOOK_STORE_BUTTON}
+    Go To  ${BOOKSTORE_URL}
     Wait Until Element Contains  ${HEADER_TITLE}  Book Store
 
 
@@ -42,8 +38,8 @@ I click to add a book
 
 
 I return to "Profile" screen
-    Wait Until Element Is Visible  ${PROFILE_BUTTON}
-    Click Element  ${PROFILE_BUTTON}
+    Go To  ${PROFILE_URL}
+    Wait Until Element Contains  ${HEADER_TITLE}  Profile
 
 
 I click in "Profile" button
@@ -56,14 +52,15 @@ I click in "Profile" button
 I click to delete a book
     Wait Until Element Is Visible  ${DELETE_BUTTON_ICON}
     Click Element  ${DELETE_BUTTON_ICON}
+
+
+I confirm the book deletion
     Wait Until Element Is Visible  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Click Element  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Handle Alert	timeout=40s
 
 
 I click to cancel the deletion
-    Wait Until Element Is Visible  ${DELETE_BUTTON_ICON}
-    Click Element  ${DELETE_BUTTON_ICON}
     Wait Until Element Is Visible  ${CANCEL_BOOKS_DELETION_BUTTON}
     Click Element  ${CANCEL_BOOKS_DELETION_BUTTON}
 
@@ -82,7 +79,3 @@ I hover on Delete icon
 
 I should see the tooltip
     Element Should Be Visible  ${DELETE_TOOLTIP}
-
-
-
-    

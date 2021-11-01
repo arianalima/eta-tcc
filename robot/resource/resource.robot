@@ -34,11 +34,13 @@ Close Application
 
 
 Delete all books
-    Wait Until Element Is Visible  ${PROFILE_BUTTON}
-    Click Element  ${PROFILE_BUTTON}
     Wait Until Element Is Visible  ${DELETE_ALL_BOOKS_BUTTON}
     Click Element  ${DELETE_ALL_BOOKS_BUTTON}
     Wait Until Element Is Visible  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Click Element  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Handle Alert	timeout=40s
+
+
+Logout
     Wait Until Element Is Visible  ${LOGOUT_BUTTON}
+    Click Element  ${LOGOUT_BUTTON}

@@ -22,12 +22,13 @@ Scenario 01: Cancel the deletion of my books in my collection
     Then the user is redirected to "Profile" screen
     When I click to open the book store
     And I click to add a book
-    When I return to "Profile" screen
+    And I return to "Profile" screen
     And I click to delete a book
     And I click to cancel the deletion
     Then I should be able to see one book in my profile
-    Then Delete all books
-
+    #tear down
+    And Delete all Books
+    And Logout
 
 Scenario 02: See tooltip delete icon
     Given Open Login Screen
@@ -36,11 +37,13 @@ Scenario 02: See tooltip delete icon
     Then the user is redirected to "Profile" screen
     When I click to open the book store
     And I click to add a book
-    When I return to "Profile" screen
-    When I hover on Delete icon
+    And I return to "Profile" screen
+    And I hover on Delete icon
     Then I should see the tooltip
-    Then Delete all books
-  
+    #tear down
+    And Delete all books
+    And Logout
+
 
 Scenario 03: Delete one book in my collection
     Given Open Login Screen
@@ -49,6 +52,8 @@ Scenario 03: Delete one book in my collection
     Then the user is redirected to "Profile" screen
     When I click to open the book store
     And I click to add a book
-    When I return to "Profile" screen
+    And I return to "Profile" screen
     And I click to delete a book
+    And I confirm the book deletion
     Then I should not be able to see books in my profile
+    And Logout
