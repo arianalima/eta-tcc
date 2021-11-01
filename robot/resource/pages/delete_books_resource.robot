@@ -57,7 +57,7 @@ I click to delete a book
 I confirm the book deletion
     Wait Until Element Is Visible  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Click Element  ${CONFIRM_BOOKS_DELETION_BUTTON}
-    Handle Alert	timeout=40s
+    Handle Alert	timeout=4s
 
 
 I click to cancel the deletion

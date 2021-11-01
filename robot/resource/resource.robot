@@ -1,6 +1,8 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  OperatingSystem
+Resource  ./BDD.robot
+Resource  ./pages/login_resource.robot
 
 
 *** Variable ***
@@ -39,6 +41,13 @@ Delete all books
     Wait Until Element Is Visible  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Click Element  ${CONFIRM_BOOKS_DELETION_BUTTON}
     Handle Alert	timeout=40s
+
+
+Login
+    Open Login Screen
+    Given the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
+    And the "Login" button is clicked
+    And the user is redirected to "Profile" screen
 
 
 Logout

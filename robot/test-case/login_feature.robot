@@ -1,10 +1,8 @@
 *** Settings ***
 Resource          ../resource/resource.robot
-Resource          ../resource/BDD.robot
 Resource          ../resource/pages/login_resource.robot
-Suite Setup       Open Application
-Test Setup        Open Login Screen
-Suite Teardown    Close Application
+Test Setup        Run Keywords    Open Application    Open Login Screen
+Test Teardown     Close Application
 
 #Bookstore Application sign in and sign up scenarios
 
@@ -18,6 +16,7 @@ Scenario 01: User successfully logged in
     Given the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
     When the "Login" button is clicked
     Then the user is redirected to "Profile" screen
+    Logout
 
 
 *** comment ***
