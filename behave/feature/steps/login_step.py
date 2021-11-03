@@ -11,11 +11,11 @@ def step_impl(context):
         context.login_page.insert_username(row['username'])
         context.login_page.insert_password(row['password'])
 
-@step(u'I click in login button')
+@step('I click in login button')
 def step_impl(context):
     context.login_page.click_in_login()
 
 
-@step(u'I should be rediceted to "{title}" screen')
+@step('I should be redirected to "{title}" screen')
 def step_impl(context, title):
     assert_that(context.login_page.get_screen_title(), is_(title), "Title is not being displayed correctly")

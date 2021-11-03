@@ -9,4 +9,4 @@ And I insert my login information
     |username | password |
     | admin   | Admin1!! |
 When I click in login button
-Then I should be rediceted to "Profile" screen   
+Then I should be redirected to "Profile" screen   
