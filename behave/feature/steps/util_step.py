@@ -6,5 +6,6 @@ from pages.bookstore_page import BookstorePage
 def step_impl(context):
     context.bookstore_page = BookstorePage(context.driver)
     context.bookstore_page.open_url(context.base_url_bookstore)
+    BasePage.find_element('By.XPATH, '//button[text()="Some text"]')
     
     
