@@ -1,6 +1,8 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  OperatingSystem
+Resource  ./BDD.robot
+Resource  ./pages/login_resource.robot
 
 
 *** Variable ***
@@ -11,6 +13,10 @@ ${CLOSE_BANNER}  css=#close-fixedban
 ${HEADER_TITLE}  css=.main-header
 ${VALID_USER}  admin
 ${VALID_PASSWORD}  Admin1!!
+${PROFILE_BUTTON}  xpath=//span[text()='Profile']
+${DELETE_ALL_BOOKS_BUTTON}  xpath=//button[text()='Delete All Books']
+${LOGOUT_BUTTON}   xpath=//button[text()='Log out']
+${CONFIRM_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-ok
 
 
 *** Keywords ***    
@@ -33,3 +39,23 @@ Login into Application
 
 Close Application
     Close Browser
+
+
+Delete all books
+    Wait Until Element Is Visible  ${DELETE_ALL_BOOKS_BUTTON}
+    Click Element  ${DELETE_ALL_BOOKS_BUTTON}
+    Wait Until Element Is Visible  ${CONFIRM_BOOKS_DELETION_BUTTON}
+    Click Element  ${CONFIRM_BOOKS_DELETION_BUTTON}
+    Handle Alert	timeout=40s
+
+
+Login
+    Open Login Screen
+    Given the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
+    And the "Login" button is clicked
+    And the user is redirected to "Profile" screen
+
+
+Logout
+    Wait Until Element Is Visible  ${LOGOUT_BUTTON}
+    Click Element  ${LOGOUT_BUTTON}
