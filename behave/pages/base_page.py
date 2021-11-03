@@ -13,13 +13,17 @@ class BasePage:
         self.driver.get(url)
 
 
-    def find_element(self, condition, seconds=9):
+    def wait(self, condition, seconds=15):
         return WebDriverWait(driver=self.driver, timeout=seconds).until(condition)
     
+    
+    def find_element(self, condition, seconds=15):
+        return self.wait(condition, seconds)
+
 
     def click(self, condition):
-        self.find_element(condition, seconds=9).click()
+        self.find_element(condition).click()
     
 
     def type_in(self, condition, text):
-        self.driver.find_element(condition).send_keys(text)
+        self.find_element(condition).send_keys(text)

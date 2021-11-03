@@ -1,3 +1,4 @@
+from hamcrest import *
 
 @step('I access login page')
 def step_impl(context):
@@ -12,9 +13,9 @@ def step_impl(context):
 
 @step(u'I click in login button')
 def step_impl(context):
-    pass
+    context.login_page.click_in_login()
 
 
-@step(u'I should be rediceted to profile screen')
-def step_impl(context):
-    pass
+@step(u'I should be rediceted to "{title}" screen')
+def step_impl(context, title):
+    assert_that(context.login_page.get_screen_title(), is_(title), "Title is not being displayed correctly")
