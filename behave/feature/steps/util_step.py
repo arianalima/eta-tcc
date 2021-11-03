@@ -1,4 +1,5 @@
 from behave import step
+from pages.profile import ProfilePage
 from pages.login_page import LoginPage
 from pages.base_page import BasePage
 from pages.bookstore_page import BookstorePage
@@ -7,6 +8,7 @@ from pages.bookstore_page import BookstorePage
 def step_impl(context):
     context.bookstore_page = BookstorePage(context.driver)
     context.login_page = LoginPage(context.driver)
+    context.profile_page = ProfilePage(context.driver)
     context.bookstore_page.open_url(context.base_url_bookstore)
-    
+
     

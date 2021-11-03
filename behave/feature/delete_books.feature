@@ -6,7 +6,7 @@ Feature: Delete Books
         |username | password |
         | admin   | Admin1!! |
     When I click in login button
-    Then I should be rediceted to "Profile" screen
+    Then I should be redirected to "Profile" screen
 
 
 Scenario: Cancel the deletion of my books in my collection
