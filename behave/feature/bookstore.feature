@@ -2,17 +2,17 @@ Feature: Bookstore
 
     Feature Description
 
-@bookstore @debug
+@bookstore
 Scenario: Access the Book’s website
     Given I click on a book
     When  I click on its website link
     Then  I should see that a new tab is opened
     And   I should be able to see the information about the selected book
 
-
-# Scenario: Open a Book’s Information on a new tab
-#     When I click to open the book information on a new tab
-#     Then I should see that a new tab is opened with the Books information
+@bookstore
+Scenario: Open a Book’s Information on a new tab
+    When I click to open the book information on a new tab
+    Then I should see that a new tab is opened with the Books information
 
 
 # Scenario: Verify the books are displayed in rows

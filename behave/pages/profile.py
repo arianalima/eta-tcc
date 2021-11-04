@@ -11,6 +11,3 @@ class ProfilePage(BasePage):
         super().move_to_element(EC.presence_of_element_located(BOOKSTORE_BUTTON))
         super().click(EC.presence_of_element_located(BOOKSTORE_BUTTON))
         super().wait_text_to_be_displayed(EC.visibility_of_element_located(SCREEN_TITLE), 'Book Store')
-    
-
-
