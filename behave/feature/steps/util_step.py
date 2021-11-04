@@ -10,5 +10,4 @@ def step_impl(context):
     context.login_page = LoginPage(context.driver)
     context.profile_page = ProfilePage(context.driver)
     context.bookstore_page.open_url(context.base_url_bookstore)
-
     

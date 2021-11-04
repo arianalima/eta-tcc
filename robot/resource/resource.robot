@@ -15,11 +15,12 @@ ${PROFILE_BUTTON}  xpath=//span[text()='Profile']
 ${DELETE_ALL_BOOKS_BUTTON}  xpath=//button[text()='Delete All Books']
 ${LOGOUT_BUTTON}   xpath=//button[text()='Log out']
 ${CONFIRM_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-ok
+${VALID_USER}  admin
+${VALID_PASSWORD}  Admin1!!
 
 
 *** Keywords ***    
 Open Application
-   # Set Environment Variable  webdriver.chrome.driver  ..\chromedriver.exe
     Open Browser  ${URL}  ${BROWSER}
     Maximize Browser Window
     Title Should Be  ToolsQA
@@ -30,6 +31,11 @@ Open Application
     Click Element  ${BOOKSTORE_CARD}
     Element Text Should Be  ${HEADER_TITLE}  Book Store
 
+Login into Application
+    Open Login Screen
+    the user is redirected to "Profile" screen        
+    the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
+    the "Login" button is clicked
 
 Close Application
     Close Browser
