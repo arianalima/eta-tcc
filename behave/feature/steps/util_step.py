@@ -1,8 +1,8 @@
 from behave import step
+from pages.bookstore_page import BookstorePage
 from pages.profile import ProfilePage
 from pages.login_page import LoginPage
-from pages.base_page import BasePage
-from pages.bookstore_page import BookstorePage
+
 
 @step(u'I access the application')
 def step_impl(context):

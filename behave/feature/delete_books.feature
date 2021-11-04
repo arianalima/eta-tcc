@@ -11,7 +11,7 @@ Feature: Delete Books
 
 Scenario: Cancel the deletion of my books in my collection
     Given I click to open the book store
-    And I click to add a book
+    And I click to add "Git Pocket Guide" book
     And I return to "Profile" screen
     And I click to delete a book
     When I click to cancel the deletion

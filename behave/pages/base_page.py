@@ -21,8 +21,29 @@ class BasePage:
 
 
     def click(self, condition):
-        self.find_element(condition).click()
+        try:
+            self.find_element(condition).click()
+        except:
+            button = self.find_element(condition)
+            self.driver.execute_script("arguments[0].click();", button)
     
 
     def type_in(self, condition, text):
         self.find_element(condition).send_keys(text)
+
+
+    def move_to_element(self, condition):
+        element = self.find_element(condition)
+        self.action.move_to_element(element).perform()
+
+
+    def wait_text_to_be_displayed(self, condition, text, timeout=10):
+        element = self.find_element(condition)
+        time = 0
+        while (element.text != text or time < timeout):
+            element = self.find_element(condition)
+            time = time + 1
+
+    def get_alert_text(self):
+        alert_obj = self.driver.switch_to.alert
+        return alert_obj.text
