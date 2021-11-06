@@ -19,6 +19,7 @@ Scenario 01: Cancel the deletion of my books in my collection
     When I click to cancel the deletion
     Then I should be able to see one book in my profile
 
+
 Scenario 02: See tooltip delete icon
     Given I click to open the book store
     And I click to add a book
