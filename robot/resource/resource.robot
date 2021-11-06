@@ -1,7 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  OperatingSystem
-Resource  ./BDD.robot
 Resource  ./pages/login_resource.robot
 
 
