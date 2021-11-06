@@ -44,6 +44,25 @@ class BasePage:
             element = self.find_element(condition)
             time = time + 1
 
+
     def get_alert_text(self):
         alert_obj = self.driver.switch_to.alert
         return alert_obj.text
+    
+
+    def accept_alert(self):
+        alert_obj = self.driver.switch_to.alert
+        return alert_obj.accept()
+
+
+    def is_displayed(self, condition, timeout=2):
+        time = 1
+        is_displayed = False
+        while (time < timeout):
+            try:
+                self.find_element(condition)
+                is_displayed = True
+                break
+            except:
+                time = time + 1
+        return is_displayed

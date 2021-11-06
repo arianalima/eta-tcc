@@ -2,7 +2,6 @@ from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-CLOSE_BANNER = (By.CSS_SELECTOR, "#close-fixedban")
 HEADER_TITLE = (By.CSS_SELECTOR, ".main-header")
 ADD_A_BOOK_IN_COLLECTION_BUTTON = (By.XPATH, "//button[text()='Add To Your Collection']")
 
@@ -22,3 +21,7 @@ class BookstorePage(BasePage):
         super().wait(EC.alert_is_present())
         return super().get_alert_text()
 
+
+    def accept_alert(self):
+        super().wait(EC.alert_is_present())
+        return super().accept_alert()
