@@ -38,10 +38,8 @@ Scenario 03: Verify the books are displayed in rows
 | Scenario Outline 04.1 | Sort the books from the books list    | Author               |
 | Scenario Outline 04.2 | Sort the books from the books list    | Publisher            |
 
-***comment***
 Scenario 05: Verify the pagination of the BookStore screen
     Given I select 5 books to be displayed per page 
     Then I verify that only 5 books are displayed per page
-    When I click on the [Next] button
-    Then I should be able to see the other books from the list
-
+    When I click on the "Next" button
+    Then I verify that only 3 books are displayed per page

@@ -16,9 +16,8 @@ ${SEARCH_EXPECTED_RESULT_1}  Eloquent JavaScript, Second Edition\nMarijn Haverbe
 ${SEARCH_EXPECTED_RESULT_2}  Understanding ECMAScript 6\nNicholas C. Zakas\nNo Starch Press
 @{SEARCH_EXPECTED_RESULT_LIST}=  ${SEARCH_EXPECTED_RESULT_1}  ${SEARCH_EXPECTED_RESULT_2}
 @{TABLE_HEADER}  css=.rt-th
-${COLUMN_TITLE}  css=div.rt-th:nth-child(2)
-${COLUMN_AUTHOR}  css=div.rt-th:nth-child(3)
-${COLUMN_PUBLISHER}  css=div.rt-th:nth-child(4)
+${ROWS_SELECTOR}  css=.select-wrap>select
+${NEXT_PAGE_BUTTON}  css=.-next>button
 
 *** Keywords ***
 I click on a book
@@ -76,6 +75,15 @@ I click on the column "${column_title}"
     END
 
 I verify that the books returned are displayed in ${n} rows as expected
+    ${books_result}=  Check books table result
+    Length Should Be  ${books_result}  ${n}
+    Lists Should Be Equal  ${books_result}  ${SEARCH_EXPECTED_RESULT_LIST}
+
+I verify that only ${n} books are displayed per page
+    ${books_result}=  Check books table result
+    Length Should Be  ${books_result}  ${n}
+
+Check books table result
     @{books}=  Get WebElements    ${BOOK_TABLE}
     @{books_result}=  Create List
     FOR    ${el}    IN    @{books}
@@ -84,12 +92,10 @@ I verify that the books returned are displayed in ${n} rows as expected
         Exit For Loop If  '${result}'=='False'
         Append To List  ${books_result}  ${txt}
     END
-    Length Should Be  ${books_result}  ${n}
-    Lists Should Be Equal  ${books_result}  ${SEARCH_EXPECTED_RESULT_LIST}
+    [Return]  ${books_result}
 
 I should see that the rows are ordered by the selected column "${column_title}"
     @{books}=  Get WebElements    ${BOOK_TABLE}
-    @{books_result}=  Create List
     ${index}=  Get "${column_title}" index
     @{actual_content}=  Create List
     FOR    ${el}    IN    @{books}
@@ -114,3 +120,14 @@ Get "${column_title}" index
     ${index}=  Get Index From List  ${header}  ${column_title}
     ${index}=  Evaluate  ${index}-1
     Return From Keyword  ${index}
+
+I select 5 books to be displayed per page
+    Press Keys  None  PAGE_DOWN 
+    Wait Until Element Is Visible  ${ROWS_SELECTOR}
+    @{dropdown}=  Get WebElements  ${ROWS_SELECTOR}
+    Select From List By Index  ${dropdown}  0
+    Press Keys  None  PAGE_UP
+
+I click on the "Next" button
+    Wait Until Element Is Visible  ${NEXT_PAGE_BUTTON}
+    Click Element  ${NEXT_PAGE_BUTTON}
