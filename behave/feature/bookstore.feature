@@ -1,13 +1,13 @@
-# Feature: Bookstore
+Feature: Bookstore
 
-#     Feature Description
+    Feature Description
 
-# @bookstore
-# Scenario: Access the Book’s website
-#     Given I click on a book
-#     When  I click on its website link
-#     Then  I should see that a new tab is opened
-#     And   I should be able to see the information about the selected book
+@bookstore @debug
+Scenario: Access the Book’s website
+    Given I click on a book
+    When  I click on its website link
+    Then  I should see that a new tab is opened
+    And   I should be able to see the information about the selected book
 
 
 # Scenario: Open a Book’s Information on a new tab
