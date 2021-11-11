@@ -1,1 +1,0 @@
-TABS_NAMES = ["ToolsQA", "O'Reilly Media - Technology and Business Training"]

@@ -6,7 +6,7 @@ from hamcrest.core.core.is_ import is_
 
 @step('I click to open the book store')
 def step_impl(context):
-    context.login_page.close_banner()
+    context.banner_page.close_banner()
     context.profile_page.click_in_bookstore_button()
 
 
