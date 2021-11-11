@@ -46,7 +46,7 @@ def step_impl(context, search_text):
 
 @step('I verify that the books returned are displayed in rows as below')
 def step_impl(context):
-    book_search_result = context.bookstore_page.get_book_search_result()
+    book_search_result = context.bookstore_page.get_book_table_result()
     for row, result in zip(context.table, book_search_result):
         assert_that(result[0], is_(row["title"]), "The Book's Title information is incorrect!")
         assert_that(result[1], is_(row["author"]), "The Book's Author information is incorrect!")
@@ -71,16 +71,18 @@ def step_impl(context, column):
     assert_that(result, is_(sorted_result), "The sorted column is incorrect!")
 
 
-@step('I select {total_books_displayed} books to be displayed per page')
-def step_impl(context,total_books_displayed):
+@step('I select {book_rows} books to be displayed per page')
+def step_impl(context,book_rows):
     context.banner_page.close_banner()
-    context.bookstore_page.select_books_per_page_amount(total_books_displayed)
-
-@step('I verify that only {book_total} books are displayed per page')
-def step_impl(context, book_total):
-    pass
+    context.bookstore_page.select_books_per_page_amount(book_rows)
 
 
 @step('I click on the Next button')
 def step_impl(context):
-    pass
+    context.bookstore_page.click_next_books_page()
+
+
+@step('I verify that only {book_total} books are displayed per page')
+def step_impl(context, book_total):
+    table_length = len(context.bookstore_page.get_book_table_result())
+    assert_that(int(table_length), is_(int(book_total)), "The displayed amount of books is incorrect!")

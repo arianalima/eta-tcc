@@ -43,7 +43,7 @@ Scenario Outline: Sort the books from the books list
         |Publisher |
 
 
-@bookstore @debug
+@bookstore
 Scenario: Verify the pagination of the BookStore screen
     Given I select 5 books to be displayed per page 
     Then  I verify that only 5 books are displayed per page

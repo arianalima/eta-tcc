@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC, wait
+from selenium.webdriver.support import expected_conditions as EC
 
 HEADER_TITLE = (By.CSS_SELECTOR, ".main-header")
 ADD_A_BOOK_IN_COLLECTION_BUTTON = (By.XPATH, "//button[text()='Add To Your Collection']")
@@ -11,7 +11,8 @@ SEARCH_FIELD =  (By.ID,'searchBox')
 SEARCH_RESULT_TABLE_ROW =  (By.CSS_SELECTOR,'.rt-tr-group')
 SEARCH_RESULT_TABLE_COLUMN =  (By.CSS_SELECTOR,'.rt-tr-group:nth-child(1) .rt-td')
 SORT_BY_COLUMNS_BUTTON = (By.CSS_SELECTOR,'.rt-th')
-BOOKS_PER_PAGE_DROP_DOWN = (By.CSS_SELECTOR,"[aria-label='rows per page']")
+BOOKS_PER_PAGE_DROP_DOWN = (By.CSS_SELECTOR,'.select-wrap>select')
+NEXT_BOOK_PAGE_BUTTON = (By.CSS_SELECTOR,'.-next>button')
 
 
 class BookstorePage(BasePage):
@@ -74,7 +75,7 @@ class BookstorePage(BasePage):
         super().type_in(EC.visibility_of_element_located(SEARCH_FIELD), search_text)
 
 
-    def get_book_search_result(self):
+    def get_book_table_result(self):
         search_result = []
         search_result_column_length = len(super().find_element(EC.visibility_of_all_elements_located(SEARCH_RESULT_TABLE_COLUMN)))
         search_result_row_length = len(super().find_element(EC.visibility_of_all_elements_located(SEARCH_RESULT_TABLE_ROW)))
@@ -107,8 +108,9 @@ class BookstorePage(BasePage):
         return sort_result
 
 
-    def select_books_per_page_amount(self, per_page_amount):
-        drop_down_select = EC.visibility_of_element_located(BOOKS_PER_PAGE_DROP_DOWN)
-        super().click(EC.element_to_be_clickable(BOOKS_PER_PAGE_DROP_DOWN))
-        drop_down_select.select_by_value(per_page_amount)
+    def select_books_per_page_amount(self, book_rows):
+        super().select_drop_down_option(EC.element_to_be_clickable(BOOKS_PER_PAGE_DROP_DOWN), book_rows)
 
+
+    def click_next_books_page(self):
+        super().click(EC.element_to_be_clickable(NEXT_BOOK_PAGE_BUTTON))

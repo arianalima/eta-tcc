@@ -1,6 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 class BasePage:    
     
@@ -75,3 +76,9 @@ class BasePage:
     def get_element_text(self, condition):
         element = self.find_element(condition)
         return element.text
+
+
+    def select_drop_down_option(self, condition, book_rows):
+        select = Select(self.find_element(condition))
+        book_rows = str(book_rows) + ' rows'
+        select.select_by_visible_text(book_rows)
