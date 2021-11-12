@@ -1,7 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  OperatingSystem
-Resource  ./BDD.robot
 Resource  ./pages/login_resource.robot
 
 
@@ -11,12 +10,12 @@ ${URL}        https://demoqa.com/
 ${BOOKSTORE_CARD}  css=.category-cards > div:nth-child(6)
 ${CLOSE_BANNER}  css=#close-fixedban
 ${HEADER_TITLE}  css=.main-header
-${PROFILE_BUTTON}  xpath=//span[text()='Profile']
-${DELETE_ALL_BOOKS_BUTTON}  xpath=//button[text()='Delete All Books']
-${LOGOUT_BUTTON}   xpath=//button[text()='Log out']
-${CONFIRM_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-ok
 ${VALID_USER}  admin
 ${VALID_PASSWORD}  Admin1!!
+${PROFILE_BUTTON}  xpath=//span[text()='Profile']
+${DELETE_ALL_BOOKS_BUTTON}  css=.di>#submit
+${LOGOUT_BUTTON}   xpath=//button[text()='Log out']
+${CONFIRM_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-ok
 
 
 *** Keywords ***    
@@ -24,8 +23,7 @@ Open Application
     Open Browser  ${URL}  ${BROWSER}
     Maximize Browser Window
     Title Should Be  ToolsQA
-    Wait Until Element Is Visible  ${CLOSE_BANNER}
-    Click Element  ${CLOSE_BANNER}
+    Close Banner
     Press Keys  None  PAGE_DOWN 
     Wait Until Element Is Visible  ${BOOKSTORE_CARD}
     Click Element  ${BOOKSTORE_CARD}
@@ -42,6 +40,7 @@ Close Application
 
 
 Delete all books
+    Close Banner
     Wait Until Element Is Visible  ${DELETE_ALL_BOOKS_BUTTON}
     Click Element  ${DELETE_ALL_BOOKS_BUTTON}
     Wait Until Element Is Visible  ${CONFIRM_BOOKS_DELETION_BUTTON}
@@ -59,3 +58,8 @@ Login
 Logout
     Wait Until Element Is Visible  ${LOGOUT_BUTTON}
     Click Element  ${LOGOUT_BUTTON}
+
+
+Close Banner
+    ${passed} =  Run Keyword And Return Status   Wait Until Element Is Visible  ${CLOSE_BANNER}
+    Run Keyword If 	${passed}  Click Element  ${CLOSE_BANNER}

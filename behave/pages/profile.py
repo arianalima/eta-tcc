@@ -11,6 +11,8 @@ DELETE_ICON_TOOLTIP = (By.CSS_SELECTOR, "span[title='Delete']")
 NO_ROWS_FOUND_TEXT = (By.XPATH, "//div[text()='No rows found']")
 LOGOUT_BUTTON = (By.XPATH, "//button[text()='Log out']")
 DELETE_ALL_BOOKS_BUTTON = (By.XPATH, "//div[@class='text-right button di']//button")
+
+
 class ProfilePage(BasePage):    
     
     def click_in_bookstore_button(self):

@@ -8,6 +8,8 @@ LOGIN_BUTTON = (By.ID, 'login')
 SCREEN_TITLE = (By.CLASS_NAME, 'main-header')
 LOGOT_BUTTON = (By.XPATH, "//button[text()='Log out']")
 CLOSE_BANNER_BUTTON = (By.ID, "close-fixedban")
+
+
 class LoginPage(BasePage):
     def access_login_url(self, login_url):
         super().open_url(login_url)

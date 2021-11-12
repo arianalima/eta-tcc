@@ -12,6 +12,7 @@ ${HEADER_TITLE}  css=.main-header
 
 *** Keywords ***
 Open Login Screen
+        Press Keys  None  PAGE_DOWN
         Wait Until Element Is Visible  ${LOGIN_MENU}
         Click Element  ${LOGIN_MENU}
         Wait Until Element Is Visible  ${LOGIN_FORM}
