@@ -12,4 +12,9 @@ def step_impl(context):
     context.profile_page = ProfilePage(context.driver)
     context.banner_page = BannerPage(context.driver)
     context.bookstore_page.open_url(context.base_url_bookstore)
+
+
+@step(u'I click to log out')
+def step_impl(context):
+    context.profile_page.click_in_logout()    
     

@@ -82,3 +82,21 @@ class BasePage:
         select = Select(self.find_element(condition))
         book_rows = str(book_rows) + ' rows'
         select.select_by_visible_text(book_rows)
+    
+
+    def accept_alert(self):
+        alert_obj = self.driver.switch_to.alert
+        return alert_obj.accept()
+
+
+    def is_displayed(self, condition, timeout=2):
+        time = 1
+        is_displayed = False
+        while (time < timeout):
+            try:
+                self.find_element(condition)
+                is_displayed = True
+                break
+            except:
+                time = time + 1
+        return is_displayed

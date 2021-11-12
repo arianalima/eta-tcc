@@ -114,3 +114,8 @@ class BookstorePage(BasePage):
 
     def click_next_books_page(self):
         super().click(EC.element_to_be_clickable(NEXT_BOOK_PAGE_BUTTON))
+    
+    
+    def accept_alert(self):
+        super().wait(EC.alert_is_present())
+        return super().accept_alert()
