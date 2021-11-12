@@ -1,14 +1,20 @@
 from behave import step
+from pages.bookstore_page import BookstorePage
 from pages.profile import ProfilePage
 from pages.login_page import LoginPage
-from pages.base_page import BasePage
-from pages.bookstore_page import BookstorePage
+from pages.banner_page import BannerPage
+
 
 @step(u'I access the application')
 def step_impl(context):
     context.bookstore_page = BookstorePage(context.driver)
     context.login_page = LoginPage(context.driver)
     context.profile_page = ProfilePage(context.driver)
+    context.banner_page = BannerPage(context.driver)
     context.bookstore_page.open_url(context.base_url_bookstore)
-    
+
+
+@step(u'I click to log out')
+def step_impl(context):
+    context.profile_page.click_in_logout()    
     
