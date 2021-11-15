@@ -1,20 +1,20 @@
 *** Settings ***
+Resource  ../resource.robot
 Library  SeleniumLibrary
 
 
 *** Variable ***
 ${LOGIN_MENU}  css=.show>.menu-list>li:nth-child(1)
-${LOGIN_BUTTON}  css=#login
-${LOGIN_FORM}  css=#userForm
-${USERNAME_INPUT}  css=#userName
-${PASSWORD_INPUT}  css=#password
+${LOGIN_BUTTON}  id=login
+${LOGIN_FORM}  id=userForm
+${USERNAME_INPUT}  id=userName
+${PASSWORD_INPUT}  id=password
 ${HEADER_TITLE}  css=.main-header
 
 *** Keywords ***
 Open Login Screen
         Press Keys  None  PAGE_DOWN
-        Wait Until Element Is Visible  ${LOGIN_MENU}
-        Click Element  ${LOGIN_MENU}
+        Click Element With Wait Condition ${LOGIN_MENU}
         Wait Until Element Is Visible  ${LOGIN_FORM}
         Page Should Contain  Welcome,
         Page Should Contain  Login in Book Store

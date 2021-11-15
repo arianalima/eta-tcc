@@ -1,20 +1,14 @@
 from behave import step
-from pages.bookstore_page import BookstorePage
-from pages.profile import ProfilePage
-from pages.login_page import LoginPage
-from pages.banner_page import BannerPage
 
 
-@step(u'I access the application')
+@step('the user is logged in')
 def step_impl(context):
-    context.bookstore_page = BookstorePage(context.driver)
-    context.login_page = LoginPage(context.driver)
-    context.profile_page = ProfilePage(context.driver)
-    context.banner_page = BannerPage(context.driver)
-    context.bookstore_page.open_url(context.base_url_bookstore)
+    context.login_page.open_login_screen()
+    context.login_page.insert_credentials(context.valid_username, context.valid_password)
+    context.login_page.click_in_login()
+    context.login_page.get_screen_title()
 
 
-@step(u'I click to log out')
+@step('the user is logged out')
 def step_impl(context):
-    context.profile_page.click_in_logout()    
-    
+    context.bookstore_page.logout()

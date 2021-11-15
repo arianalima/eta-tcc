@@ -12,7 +12,7 @@ ${VALID_PASSWORD}  Admin1!!
 
 
 *** Test Cases ***
-Scenario 01: User successfully logged in
+Scenario: User successfully logged in
     Given the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
     When the "Login" button is clicked
     Then the user is redirected to "Profile" screen

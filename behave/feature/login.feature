@@ -1,12 +1,10 @@
 Feature: Login
 
-    Login
+  Background: SETUP
+    Given The Login screen is opened
 
-
-Scenario: Successfull Login
-Given I access login page
-And I insert my login information 
-    |username | password |
-    | admin   | Admin1!! |
-When I click in login button
-Then I should be redirected to "Profile" screen   
+  @logout
+  Scenario: User successfully logged in
+    Given the fields are filled: "admin" and "Admin1!!"
+    When the "Login" button is clicked
+    Then the user is redirected to "Profile" screen
