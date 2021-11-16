@@ -11,6 +11,7 @@ def step_impl(context):
 @step('I open "{book_name}" book')
 def step_impl(context, book_name):
     context.bookstore_page.click_to_select_a_book(book_name)
+    context.banner_page.close_banner()
 
 
 @step('I add the book to my collection')
