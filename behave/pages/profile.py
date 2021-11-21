@@ -36,16 +36,16 @@ class ProfilePage(BasePage):
 
     def is_book_displayed(self, book_name):
         book_name_title = (By.CSS_SELECTOR, "span[id='see-book-"+book_name+"']")
-        return super().is_displayed(EC.visibility_of_element_located(book_name_title))
+        return super().find_element(EC.visibility_of_element_located(book_name_title)).is_displayed()
 
     def hover_on_delete_icon(self):
         super().move_to_element(EC.visibility_of_element_located(DELETE_SINGLE_BOOK_BUTTON))
 
     def is_delete_icon_tooltip_displayed(self):
-        return super().is_displayed(EC.visibility_of_element_located(DELETE_ICON_TOOLTIP))
+        return super().find_element(EC.visibility_of_element_located(DELETE_ICON_TOOLTIP)).is_displayed()
 
     def is_no_books_found_displayed(self):
-        return super().is_displayed(EC.visibility_of_element_located(NO_ROWS_FOUND_TEXT))
+        return super().find_element(EC.visibility_of_element_located(NO_ROWS_FOUND_TEXT)).is_displayed()
 
     def click_to_delete_all_books(self):
         super().click(EC.visibility_of_element_located(DELETE_ALL_BOOKS_BUTTON))

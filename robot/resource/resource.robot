@@ -59,5 +59,5 @@ Close Banner
 
 
 Click Element With Wait Condition ${ELEMENT_LOCATOR}
-    Wait Until Element Is Visible  ${ELEMENT_LOCATOR}
+    Wait Until Element Is Visible  ${ELEMENT_LOCATOR}  15
     Click Element  ${ELEMENT_LOCATOR}

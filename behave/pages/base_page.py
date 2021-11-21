@@ -32,7 +32,7 @@ class BasePage:
         element = self.find_element(condition)
         self.action.move_to_element(element).perform()
 
-    def wait_text_to_be_displayed(self, condition, text, timeout=10):
+    def wait_text_to_be_displayed(self, condition, text, timeout=15):
         element = self.find_element(condition)
         time = 0
         while element.text != text or time < timeout:
@@ -51,21 +51,13 @@ class BasePage:
             tab_titles.append(self.driver.title)
         return tab_titles
 
-    # def get_window_handles(self):
-    #     return self.driver.window_handles
-    #
-    # def switch_to_window(self, condition):
-    #     return self.driver.switch_to.window(condition)
-
-    # def get_window_url(self):
-    #     return self.driver.current_url
-
-    # def get_window_title(self):
-    #     return self.driver.title
+    def switch_to_window(self, condition):
+        return self.driver.switch_to.window(condition)
 
     def open_element_on_new_tab(self, condition):
         element = self.find_element(condition)
         ActionChains(self.driver).key_down(Keys.CONTROL).click(element).key_up(Keys.CONTROL).perform()
+        self.driver.switch_to.window(self.driver.window_handles[1])
 
     def get_element_text(self, condition):
         element = self.find_element(condition)
@@ -79,15 +71,3 @@ class BasePage:
     def accept_alert(self):
         alert_obj = self.driver.switch_to.alert
         return alert_obj.accept()
-
-    def is_displayed(self, condition, timeout=2):
-        time = 1
-        is_displayed = False
-        while time < timeout:
-            try:
-                self.find_element(condition)
-                is_displayed = True
-                break
-            except:
-                time = time + 1
-        return is_displayed
