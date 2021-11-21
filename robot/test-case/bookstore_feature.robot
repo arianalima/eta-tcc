@@ -34,7 +34,7 @@ Scenario: Open a Book’s Information on a new tab
     Then I should see that a new tab is opened with "Git Pocket Guide" details
 
 Scenario: Verify the books are displayed in rows
-    When I search for "${SEARCH_VALUE}"
+    When I search the bookstore for "${SEARCH_VALUE}"
     Then I verify that only "${RESULTS_COUNT}" books are displayed per page
     And The search result should match ${EXPECTED_SEARCH_RESULT}
 
