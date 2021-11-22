@@ -33,7 +33,7 @@ Scenario: Open a Book’s Information on a new tab
     When I open the book "Git Pocket Guide" information on a new tab
     Then I should see that a new tab is opened with "Git Pocket Guide" details
 
-Scenario: Verify the books are displayed in rows
+Scenario: Verify the books are correctly displayed after search
     When I search the bookstore for "${SEARCH_VALUE}"
     Then I verify that only "${RESULTS_COUNT}" books are displayed per page
     And The search result should match ${EXPECTED_SEARCH_RESULT}
