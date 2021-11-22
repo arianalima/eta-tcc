@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from pages.login_page import SCREEN_TITLE, LoginPage
+from pages.login_page import SCREEN_TITLE
 
 BOOKSTORE_BUTTON = (By.ID, 'gotoStore')
 DELETE_SINGLE_BOOK_BUTTON = (By.ID, 'delete-record-undefined')
@@ -9,7 +9,7 @@ CONFIRM_DELETE_SINGLE_BOOK_BUTTON = (By.ID, 'closeSmallModal-ok')
 CANCEL_DELETE_SINGLE_BOOK_BUTTON = (By.ID, 'closeSmallModal-cancel')
 DELETE_ICON_TOOLTIP = (By.CSS_SELECTOR, "span[data-toggle='tooltip'][title='Delete']")
 NO_ROWS_FOUND_TEXT = (By.CSS_SELECTOR, ".rt-noData")
-DELETE_ALL_BOOKS_BUTTON = (By.XPATH, "//div[@class='text-right button di']//button")
+DELETE_ALL_BOOKS_BUTTON = (By.CSS_SELECTOR, ".di>#submit")
 HEADER_TITLE = (By.CSS_SELECTOR, '.main-header')
 
 

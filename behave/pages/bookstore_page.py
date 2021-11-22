@@ -2,11 +2,9 @@ from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-HEADER_TITLE = (By.CSS_SELECTOR, ".main-header")
 ADD_A_BOOK_IN_COLLECTION_BUTTON = (By.XPATH, "//button[text()='Add To Your Collection']")
 WEBSITE_LABEL = (By.ID, 'website-label')
 WEBSITE_LINK = (By.CSS_SELECTOR, '#website-wrapper #userName-value')
-BACK_BUTTON = (By.ID, 'addNewRecordButton')
 SEARCH_FIELD = (By.ID, 'searchBox')
 SEARCH_RESULT_TABLE_ROW = (By.CSS_SELECTOR, '.rt-tr-group')
 SEARCH_RESULT_TABLE_COLUMN = (By.CSS_SELECTOR, '.rt-tr-group:nth-child(1) .rt-td')

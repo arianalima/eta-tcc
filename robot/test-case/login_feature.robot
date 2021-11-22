@@ -4,7 +4,6 @@ Resource          ../resource/pages/login_resource.robot
 Test Setup        Run Keywords    Open Application    Open Login Screen
 Test Teardown     Close Application
 
-#Bookstore Application sign in and sign up scenarios
 
 *** Variables ***
 ${VALID_USER}  admin

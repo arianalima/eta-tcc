@@ -2,11 +2,6 @@ from behave import step
 from hamcrest import assert_that, is_
 
 
-@step('I select the "{book_name}" book')
-def step_impl(context, book_name):
-    context.bookstore_page.click_to_select_a_book(book_name)
-
-
 @step('I click on its website link')
 def step_impl(context):
     context.banner_page.close_banner()

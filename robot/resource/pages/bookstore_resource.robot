@@ -6,24 +6,18 @@ Library  String
 Resource  ../resource.robot
 
 *** Variable ***
-${FIRST_BOOK}  css=a[href="/books?book=9781449325862"]
 ${WEBSITE_LABEL}  id=website-label
 ${WEBSITE_LINK}  css=#website-wrapper #userName-value
-${CLOSE_BANNER}  css=#close-fixedban
-${BACK_BUTTON}  css=#addNewRecordButton
-${SEARCH_FIELD}  css=#searchBox
+${SEARCH_FIELD}  id=searchBox
 ${BOOK_TABLE}   css=.rt-tr-group
-${SEARCH_EXPECTED_RESULT_1}  Eloquent JavaScript, Second Edition\nMarijn Haverbeke\nNo Starch Press
-${SEARCH_EXPECTED_RESULT_2}  Understanding ECMAScript 6\nNicholas C. Zakas\nNo Starch Press
-@{SEARCH_EXPECTED_RESULT_LIST}=  ${SEARCH_EXPECTED_RESULT_1}  ${SEARCH_EXPECTED_RESULT_2}
 @{TABLE_HEADER}  css=.rt-th
 ${ROWS_SELECTOR}  css=.select-wrap>select
 ${NEXT_PAGE_BUTTON}  css=.-next>button
 
 *** Keywords ***
 I click on its website link
-    Click Element With Wait Condition ${CLOSE_BANNER}
-    Scroll Element Into View  ${BACK_BUTTON}
+    Close Banner
+    Scroll Element Into View  ${WEBSITE_LINK}
     Click Element  ${WEBSITE_LINK}    
 
 I should see that a new tab is opened
@@ -42,7 +36,7 @@ I open the book "${BOOK_NAME}" information on a new tab
     ${windows}=  Get Window Handles
     Switch Window    ${windows}[1]
     Wait Until Element Is Visible  ${WEBSITE_LABEL}  15
-    Click Element With Wait Condition ${CLOSE_BANNER}
+    Close Banner
 
 I should see that a new tab is opened with "${BOOK_NAME}" details
     ${windows}=  Get Window Titles

@@ -5,20 +5,15 @@ Resource  ../resource.robot
 
 
 *** Variable ***
-${HEADER_TITLE}  css=.main-header
-${FIRST_BOOK}  css=a[href="/books?book=9781449325862"]
-${ADD_A_BOOK_TO_A_COLLECTION_BUTTON}  xpath=//div[@class='mt-2 fullButtonWrap row']/*[last()]//button 
-${CLOSE_BANNER}  css=#close-fixedban
-${PROFILE_BUTTON}  xpath=//span[text()='Profile']
-${DELETE_BUTTON_ICON}  id=delete-record-undefined
-${CONFIRM_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-ok
-${CANCEL_BOOKS_DELETION_BUTTON}  css=#closeSmallModal-cancel
-${BOOK_NAME_LABEL}   xpath=//label[text()='Git Pocket Guide']
-${DELETE_TOOLTIP}   css=span[data-toggle='tooltip'][title='Delete']      
-${PROFILE_URL}   https://demoqa.com/profile
-${BOOKSTORE_URL}    https://demoqa.com/books
 ${BOOKSTORE_BUTTON}    id=gotoStore
+${DELETE_BUTTON_ICON}  id=delete-record-undefined
+${CONFIRM_BOOKS_DELETION_BUTTON}  id=closeSmallModal-ok
+${CANCEL_BOOKS_DELETION_BUTTON}  id=closeSmallModal-cancel
+${DELETE_TOOLTIP}   css=span[data-toggle='tooltip'][title='Delete']      
 ${NO_ROWS_FOUND_MESSAGE}  css=.rt-noData
+${HEADER_TITLE}  css=.main-header
+${ADD_A_BOOK_TO_A_COLLECTION_BUTTON}  xpath=//button[text()='Add To Your Collection']
+
 
 *** Keywords ***
 I click to open the book store
@@ -29,7 +24,7 @@ I open "${BOOK_NAME}" book
 
 I add the book to my collection
     Press Keys  None  PAGE_DOWN
-    Click Element With Wait Condition ${CLOSE_BANNER}
+    Close Banner
     Click Element With Wait Condition ${ADD_A_BOOK_TO_A_COLLECTION_BUTTON}
     ${message} =	Handle Alert
     Should Be Equal As Strings    ${message}    Book added to your collection.

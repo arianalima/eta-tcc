@@ -4,11 +4,11 @@ Library  SeleniumLibrary
 
 
 *** Variable ***
-${LOGIN_MENU}  css=.show>.menu-list>li:nth-child(1)
-${LOGIN_BUTTON}  id=login
-${LOGIN_FORM}  id=userForm
 ${USERNAME_INPUT}  id=userName
 ${PASSWORD_INPUT}  id=password
+${LOGIN_FORM}  id=userForm
+${LOGIN_BUTTON}  id=login
+${LOGIN_MENU}  css=.show>.menu-list>li:nth-child(1)
 ${HEADER_TITLE}  css=.main-header
 
 *** Keywords ***
