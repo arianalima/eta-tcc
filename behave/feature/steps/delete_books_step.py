@@ -5,19 +5,20 @@ from hamcrest.core.core.is_ import is_
 
 @step('I click to open the book store')
 def step_impl(context):
-    context.banner_page.close_banner()
     context.profile_page.click_in_bookstore_button()
 
 
-@step('I click to add "{book_name}" book')
+@step('I open "{book_name}" book')
 def step_impl(context, book_name):
     context.bookstore_page.click_to_select_a_book(book_name)
-    context.bookstore_page.click_to_add_a_book()
-    
-       
-@step('I verify that the book was added correctly')
+    context.banner_page.close_banner()
+
+
+@step('I add the book to my collection')
 def step_impl(context):
-    assert_that(context.bookstore_page.get_alert_text(), is_("Book added to your collection."), "Alert text is not being displayed as expected")
+    context.bookstore_page.click_to_add_a_book()
+    assert_that(context.bookstore_page.get_alert_text(), is_("Book added to your collection."),
+                "Alert text is not being displayed as expected")
     context.bookstore_page.accept_alert()
 
 
@@ -33,16 +34,16 @@ def step_impl(context, book_name):
 
 @step('I click to {action} the deletion')
 def step_impl(context, action):
-    if (action.lower()== 'cancel'):
+    if action.lower() == 'cancel':
         context.profile_page.cancel_delete_single_book()
     else:
         context.profile_page.confirm_delete_single_book()
+        context.bookstore_page.accept_alert()
 
 
-@step('I should be able to see this book below in my profile')
-def step_impl(context):
-    for row in context.table:
-        assert_that(context.profile_page.get_book_name_title(row['title']), is_(True), "Book is not being displayed")
+@step('I should be able to see "{title}" book in my profile')
+def step_impl(context, title):
+    assert_that(context.profile_page.is_book_displayed(title), is_(True), "Book is not being displayed")
 
 
 @step('I hover on Delete icon')
@@ -52,23 +53,9 @@ def step_impl(context):
 
 @step('I should see the tooltip')
 def step_impl(context):
-    assert_that(context.profile_page.get_delete_icon_tooltip(), is_(True), "Tooltip is not being displayed")
-
-
-@step('I should see a warning informing that {amount} book(s) was deleted')
-def step_impl(context, amount):
-    if (amount.lower() == 'the'):
-        assert_that(context.bookstore_page.get_alert_text(), is_("Book deleted."), "Warning is not being displayed as expected")
-    if (amount.lower() == 'all'):
-        assert_that(context.bookstore_page.get_alert_text(), is_("All Books deleted."), "Warning is not being displayed as expected")    
-    context.bookstore_page.accept_alert()
+    assert_that(context.profile_page.is_delete_icon_tooltip_displayed(), is_(True), "Tooltip is not being displayed")
 
 
 @step('I should not be able to see books in my profile')
 def step_impl(context):
-    assert_that(context.profile_page.get_no_books_found_information(), is_(True), "Book is being displayed")
-
-
-@step('I click to delete all books')
-def step_impl(context):
-    context.profile_page.click_to_delete_all_books()
+    assert_that(context.profile_page.is_no_books_found_displayed(), is_(True), "Book is being displayed")

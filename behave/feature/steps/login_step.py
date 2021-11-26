@@ -1,21 +1,22 @@
+from behave import step
 from hamcrest import *
 
-@step('I access login page')
+
+@step('The Login screen is opened')
 def step_impl(context):
-    context.login_page.access_login_url('https://demoqa.com/login')
+    context.login_page.open_login_screen()
 
 
-@step('I insert my login information')
-def step_impl(context):
-    for row in context.table:
-        context.login_page.insert_username(row['username'])
-        context.login_page.insert_password(row['password'])
+@step('the fields are filled: "{username}" and "{password}"')
+def step_impl(context, username, password):
+    context.login_page.insert_credentials(username, password)
 
-@step('I click in login button')
+
+@step('the "Login" button is clicked')
 def step_impl(context):
     context.login_page.click_in_login()
 
 
-@step('I should be redirected to "{title}" screen')
+@step('the user is redirected to "{title}" screen')
 def step_impl(context, title):
     assert_that(context.login_page.get_screen_title(), is_(title), "Title is not being displayed correctly")
