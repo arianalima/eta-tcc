@@ -1,4 +1,4 @@
-*** Settings ****
+*** Settings ***
 Resource          ../resource/resource.robot
 Resource          ../resource/pages/bookstore_resource.robot
 Resource          ../resource/pages/delete_books_resource.robot
