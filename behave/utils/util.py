@@ -1,6 +1,6 @@
 from pages.bookstore_page import BookstorePage
 from pages.main_page import MainPage
-from pages.profile import ProfilePage
+from pages.profile_page import ProfilePage
 from pages.login_page import LoginPage
 from pages.banner_page import BannerPage
 

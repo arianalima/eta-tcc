@@ -28,3 +28,4 @@ the fields are filled: "${VALID_USER}" and "${VALID_PASSWORD}"
 
 the "Login" button is clicked
         Click Element  ${LOGIN_BUTTON}
+        
